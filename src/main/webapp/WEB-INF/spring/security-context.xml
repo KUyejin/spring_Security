@@ -8,27 +8,49 @@
     <!-- 검사 URL (인증)-->
     <http auto-config="true" use-expressions="true"> 
             <!--  use-expressions는 함수를 사용할수 있게 해주는 것 false일 경우 access에 'ROLE_MEMBER' 다이렉트로 들어감 -->
-        <intercept-url pattern="/admin/**" access="hasRole('ROLE_MEMBER')" />
-            <!-- 필터에서 가로채서 권한있는사람(hasRole('ROLE_MEMBER'))만 /admin/** 들어오는 걸 허용하겠다
-            "/admin/**" URL은 리소스이다 -->
-        <form-login login-page ="/login/loginForm"/> 
-	        <!--
-	         <form-login/> 은 로그인 페이지를 말한다
-	         <form-login/> ->디폴트  이다
-	         <form-login login-page ="/login/loginForm"> -> 커스토마 해준다(디폴트쓰지않고 바로 타게해준다)-->         
+        <intercept-url pattern="/login/loginForm" access="permitAll" />
+            <!-- /login/loginForm 를 치고들어오는 것 모두에게 권한을 주겠다 -->
+        <intercept-url pattern="/" access="permitAll" />  
+            <!-- / 를 치고들어오는 것 모두에게 권한을 주겠다 -->  
+        <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
+            <!-- 필터에서 가로채서 권한있는사람(hasRole('ROLE_MEMBER'))만 /admin/** 들어오는 걸 허용하겠다 , 유저가 들어오면 403에러
+                 "/admin/**" URL은 리소스이다 -->
+        <intercept-url pattern="/**" access="hasAnyRole('USER,ADMIN')" />         
+        
+        
+        <form-login login-page ="/login/loginForm"
+                    default-target-url="/"
+                    authentication-failure-url="/login/loginForm?error" 
+                    username-parameter = "id"
+                    password-parameter = "password" /> 
+			        <!--<form-login/> 은 로그인 페이지를 말한다
+			            <form-login/> ->디폴트  이다
+			            <form-login login-page ="/login/loginForm"> -> 커스토마 해준다(디폴트쓰지않고 바로 타게해준다)-->     
+	   
+	    <logout logout-url = "/logout" logout-success-url="/"/> 
+	    <!-- 로그아웃을 시큐리티에서 처리해라 -서버에서 웹브라우저에 있는 쿠키(세션아이디) 날려줌 -->  
+   
+	    <access-denied-handler error-page="/login/accessDenied"/>
+	    <!-- 에러가 뜨면 에러페이지를 처리해준다. -->  
+	            
+	    <!--<csrf disabled="false"></csrf> -->
+	     <!--csrf끄는 것 -->     
+	           
     </http>
     
 	<!-- provider (권한)--> 
 	<authentication-manager>
 	    <authentication-provider> 
 			<user-service> 
-				<user name="member" password="{noop}member" authorities="ROLE_MEMBER" /> 
+				<user name="user" password="{noop}user" authorities="ROLE_USER" /> 
 				<user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN" /> 
 				<!-- password="{noop}member -> 꼭{noop}이 들어가야함
 				     authorities="ROLE_MEMBER"권한을 주고 있다-->
 			</user-service> 
 		</authentication-provider>
 	</authentication-manager>
+	<!-- authentication-manager,authentication-provide,user-service,user는 다 객체이다 -->
+	
     
     
 </beans:beans>

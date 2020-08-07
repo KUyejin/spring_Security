@@ -8,7 +8,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml
-		             /WEB-INF/spring/security-context.xml <!-- 추가해주기 -->
+		             /WEB-INF/spring/security-context_db.xml <!-- 추가해주기 -->
 		</param-value>  
 	</context-param>
 	
@@ -52,8 +52,9 @@
    
    
     <!-- Spring Security Filter -->   
-    <!-- Security Filter 자체가 객체이다  -> 그 안에 11개의 필터가 있다 (참고:https://siyoon210.tistory.com/32) 
-    -> 필터를 한개씩 거치면서 인증과 권한를 가진다 
+    <!-- Security Filter 객체를 생성시켜주는 것  -> 그 안에 11개의 필터가 있다 (참고:https://siyoon210.tistory.com/32) ->디스패처서블릿전에 걸러준다
+    -> 필터를 한개씩 거치면서 인증과 권한를 거친다 
+    ->스프링시큐리티라이브러리를 쓰겠다는 것  
     -->
     
 	<filter>

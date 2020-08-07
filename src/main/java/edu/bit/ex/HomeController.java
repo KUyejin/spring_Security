@@ -40,11 +40,19 @@ public class HomeController {
 		return "home";
 	}
 	
+
+	
 	@GetMapping("/admin/adminHome") 
 	public void adminHome() { //해당 view값이 경로값과 같을 때에는 void쓴다 -> jsp 그대로 리턴
 		log.info("adminHome...");
 	}
 	
+	@GetMapping("/user/userHome") 
+	public void userHome() { //해당 view값이 경로값과 같을 때에는 void쓴다 -> jsp 그대로 리턴
+		log.info("adminHome...");
+	}
+	
+		
 	@GetMapping("/login/loginForm")
 	public String loginForm() {
 		log.info("Welcom Login Form!");
