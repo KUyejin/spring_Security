@@ -60,5 +60,11 @@ public class HomeController {
 		return "/login/loginForm";
 	}
 	
+	@GetMapping("/login/accessDenied")
+	public void accessDenied(Model model) {
+		log.info("Welcom Access Denied!");
+
+	}
+	
 	
 }
