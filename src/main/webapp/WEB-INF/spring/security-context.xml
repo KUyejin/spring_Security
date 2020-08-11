@@ -45,7 +45,9 @@
 				<user name="user" password="{noop}user" authorities="ROLE_USER" /> 
 				<user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN" /> 
 				<!-- password="{noop}member -> 꼭{noop}이 들어가야함
-				     authorities="ROLE_MEMBER"권한을 주고 있다-->
+				     authorities="ROLE_MEMBER"권한을 주고 있다
+				     유저정보를 메모리에 올려 놓은 상태
+				     -->
 			</user-service> 
 		</authentication-provider>
 	</authentication-manager>

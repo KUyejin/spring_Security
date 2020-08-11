@@ -22,10 +22,16 @@
 			<!--로그아웃을 post로 보내는 것은 규칙이다 -->
 			    <input type="submit" value="로그아웃" />
 			</form:form>
+			
+			<sec:authentication var="principal" property="principal"/>
+			<p>${principal.username} 님 환영합니다</p>
+			<!-- principal이라는 객체가 생긴다  -> Model로 넘기면 안됨 -->
+			
 			<p><a href="<c:url value="/loginInfo" />">로그인 정보 확인 방법3 가지</a></p>
 		</sec:authorize>
 		
 		<h3>
+		    [<a href="<c:url value="/user/userForm" />">회원가입</a>]
 		    [<a href="<c:url value="/user/userHome" />">유저 홈</a>]
 		    [<a href="<c:url value="/admin/adminHome" />">관리자 홈</a>]
 		</h3>

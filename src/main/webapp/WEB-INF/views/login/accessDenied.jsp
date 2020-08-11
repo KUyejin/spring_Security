@@ -12,7 +12,7 @@
 	
 	    <h1>Access Denied!</h1>
 	    
-	    <!--<h3>[<a href="<c:url value="/user/userHome" />">유저 홈</a>]</h3> -->
+	    <h3>[<a href="<c:url value="/user/userHome" />">유저 홈</a>]</h3>
      
 	
 	</body>
