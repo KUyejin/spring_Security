@@ -1,0 +1,17 @@
+
+### 커스텀 UserDetailsService, UserDetails 활용
+-커스텀: 자기 기능을 넓히고 확장시키는 것
+
+*확장하는 방법
+-extends: 부모함수를 오버라이딩 해서 자기방식으로 커스텀화 시키는것 - User객체를 상속
+-implements: 기존함수를 자기에 맞게 변경
+
+*JDBC를 이용하는 방식으로도 DB를 처리해서 편리하게 사용할 수 있기는 하지만,
+사용자의 여러 정보들 중에서 제한적인 내용만을 이용한다는 단점이 있다.
+
+스프링 시큐리티에서 username 사용자 정보만을 이용하기 때문에 실제 프로젝트 상에서의 이름이나 이메일 등의 
+자세한 정보를 이용할 수 없다.
+
+이러한 문제를 해결하기 위해서 직접 UserDetailsService, UserDetails, User 직접구현  
+(UserDetailsService 안에 UserDetails 안에 User)
+-UserDetailsService는 무조건 구현해줘야한다. 

@@ -150,6 +150,7 @@
          <artifactId>spring-test</artifactId>
          <version>${org.springframework-version}</version>
       </dependency>
+     
       <dependency> <!-- spring-jdbc 반드시 있어야 합니다. db와 관련된 것 -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-jdbc</artifactId>

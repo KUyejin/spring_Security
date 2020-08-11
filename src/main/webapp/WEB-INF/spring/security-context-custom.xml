@@ -21,7 +21,7 @@
         
          <logout logout-url="/logout" logout-success-url="/" /> 
                 
-        <access-denied-handler error-page="/login/accessDenied" /> <!-- 접근제한일 때 뜨는 페이지 -->
+        <access-denied-handler error-page="/login/accessDenied" />
     </http>    
     
     
@@ -35,36 +35,13 @@
     <!-- 추가해주기 -->
      <beans:bean id="customNoOpPasswordEncoder" class="edu.bit.ex.security.CustomNoOpPasswordEncoder"/> 
      <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-    
-    
-   
-
-<!--      <jdbc-user-service 
-            data-source-ref="dataSource"
-            role-prefix=""
-            users-by-username-query="select username, password, enabled from users where username = ?"
-            authorities-by-username-query="select username, authority from authorities where username = ?"
-            group-authorities-by-username-query="select g.id, g.group_name, ga.authority from groups g, group_members gm, group_authorities ga where gm.username = ? and g.id = ga.group_id and g.id = gm.group_id"
-    /> -->
+     <beans:bean id="customUserDetailsService" class="edu.bit.ex.security.CustomUserDetailsService" />
+		
 	
-	
-	
-	<!-- 기존에 있는 DB를 이용 -->
     <!--  provider  -->
       <authentication-manager>
-        <authentication-provider>
-        <!-- <password-encoder ref ="customNoOpPasswordEncoder"/> -->
-        <password-encoder ref ="bcryptPasswordEncoder"/>
-        <jdbc-user-service 
-            data-source-ref="dataSource"         
-            users-by-username-query="select username, password, enabled from users where username = ?"  
-            authorities-by-username-query="select username, authority from authorities where username = ?"/>   
-            <!-- 유저인증에 대한 쿼리 / 권한에 대한 쿼리-->
-        
-        <!-- 아래 쿼리는 ename : username / empno:pw로 할 경우 쿼리이다 
-             users-by-username-query="select ename, empno, 1  from emp where ename = ?"
-            authorities-by-username-query="select ename,case when job='MANAGER' then 'ROLE_ADMIN' else  'ROLE_USER' end authority from emp where ename=?"/>   -->   
-        
+        <authentication-provider user-service-ref="customUserDetailsService">
+        <password-encoder ref ="customNoOpPasswordEncoder"/>               
         </authentication-provider>
     </authentication-manager> 
     

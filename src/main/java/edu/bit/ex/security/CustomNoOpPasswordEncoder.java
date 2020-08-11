@@ -20,7 +20,7 @@ public class CustomNoOpPasswordEncoder implements PasswordEncoder {
 		log.warn("matches: " + rawPassword + ":" + encodedPassword);
 		
 		return rawPassword.toString().equals(encodedPassword);
-		//원래있던 패스워드 비고해서 리턴시켜라
+		//원래있던 패스워드 비교해서 리턴시켜라
 	}
 
 }

@@ -27,6 +27,7 @@
 			<p>${principal.username} 님 환영합니다</p>
 			<!-- principal이라는 객체가 생긴다  -> Model로 넘기면 안됨 -->
 			
+			
 			<p><a href="<c:url value="/loginInfo" />">로그인 정보 확인 방법3 가지</a></p>
 		</sec:authorize>
 		

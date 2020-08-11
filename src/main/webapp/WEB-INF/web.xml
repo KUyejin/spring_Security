@@ -9,7 +9,8 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml
 					 <!-- /WEB-INF/spring/security-context.xml  -->
-		            /WEB-INF/spring/security-context_db.xml  <!-- 추가해주기 -->
+		            <!-- /WEB-INF/spring/security-context_db.xml -->  
+		            /WEB-INF/spring/security-context-custom.xml <!-- 추가해주기 -->
 		</param-value>  
 	</context-param>
 	

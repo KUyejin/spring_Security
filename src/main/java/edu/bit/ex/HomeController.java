@@ -59,7 +59,7 @@ public class HomeController {
 	public String loginForm() {
 		log.info("Welcom Login Form!");
 
-		return "login/loginForm";
+		return "login/loginForm2";
 	}
 
 	@GetMapping("/login/accessDenied")
@@ -72,29 +72,29 @@ public class HomeController {
 	public String loginInfo(Principal principal) {
 		log.info("Welcom loginInfo!");
 
-		String user_id;
-
-		// 1. [SpringContextHolder를 통하여 가져오는 방법(일반적인 빈에서 사용할수있음)]=====================================
-		// UserDetails에서 유저아이디, 비번을 가져온다
-		// SecurityContextHolder안에 Authentication(인증)있다 -> Authentication 안에는 principal이 있다 ->
-		// principal안에는 userDetails있다. -> userDetails 안에는 user있다
-			  		  
-		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		  user_id = auth.getName(); 
-		  UserDetails userDetails = (UserDetails)auth.getPrincipal();
+		
+		  String user_id;
 		  
-		  System.out.println("유저 아이디:" + userDetails.getUsername());		 
-		
-
-		// 2. [Controller를 통하여 Principal객체로 가져오는 방법]=========================================================
-		UserDetails userDetail = (UserDetails) principal;
-		System.out.println(userDetails.getUsername());
-
-		// 3. [User 클래스로 변환하여 가져오는 방법]=====================================================================
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println(user.getUsername());
-		
-
+		  // 1. [SpringContextHolder를 통하여 가져오는 방법(일반적인 빈에서 사용할수있음)]===================================== 
+		  // UserDetails에서 유저아이디, 비번을가져온다
+		  // SecurityContextHolder안에 Authentication(인증)있다 -> Authentication 안에는 principal이 있다 -> 
+		  // principal안에는 userDetails있다. -> userDetails 안에는 user있다
+		  
+		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		  user_id = auth.getName(); UserDetails userDetails =
+		  (UserDetails)auth.getPrincipal();
+		  
+		  System.out.println("유저 아이디:" + userDetails.getUsername());
+		  
+		 
+		 // 2. [Controller를 통하여 Principal객체로 가져오는 방법]========================================================= 
+		  UserDetails userDetail = (UserDetails) principal;
+		  System.out.println(userDetails.getUsername());
+		  
+		 // 3. [User 클래스로 변환하여 가져오는방법]===================================================================== 
+		  User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		  System.out.println(user.getUsername());
+		 
 		return "home";
 	}
 
