@@ -25,6 +25,9 @@
 		<property name="dataSource" ref="dataSource"></property>		
 	</bean>	
 	
+	
+	
+	
 	<!-- Mapper Interface -->
 	<mybatis-spring:scan base-package="edu.bit.ex.mapper"/>
 		
